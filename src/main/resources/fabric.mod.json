@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "matchbox",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Matchbox",
+  "description": "???",
   "authors": [
-    "Me!"
+    "Sunroses"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "",
+    "sources": "https://github.com/deli73/matchbox"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "BSD-3 probably",
+  "icon": "assets/matchbox/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "xyz.sunrose.matchbox.Matchbox"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "matchbox.mixins.json"
   ],
 
   "depends": {
