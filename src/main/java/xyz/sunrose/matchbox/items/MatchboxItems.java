@@ -15,7 +15,7 @@ public class MatchboxItems {
 
     public static Item DETACHER = Registry.register(
             Registry.ITEM, new Identifier(Matchbox.MODID, "detacher"),
-            new DetacherTool(new FabricItemSettings().maxDamage(256).group(ItemGroup.TOOLS))
+            new DetacherTool(new FabricItemSettings().maxCount(1).group(ItemGroup.TOOLS))
     );
 
     public static void init () {
