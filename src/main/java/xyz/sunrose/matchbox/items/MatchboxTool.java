@@ -28,6 +28,7 @@ public class MatchboxTool extends Item {
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
         if (CampfireBlock.canBeLit(blockState) || CandleBlock.canBeLit(blockState) || CandleCakeBlock.canBeLit(blockState)) {
+            // TODO custom sound
             world.playSound(playerEntity, blockPos, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, world.getRandom().nextFloat() * 0.4F + 0.8F);
             world.setBlockState(blockPos, (BlockState)blockState.with(Properties.LIT, true), 11);
             world.emitGameEvent(playerEntity, GameEvent.BLOCK_PLACE, blockPos);

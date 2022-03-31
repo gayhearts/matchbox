@@ -13,6 +13,11 @@ public class MatchboxItems {
             new MatchboxTool(new FabricItemSettings().maxDamage(64).group(ItemGroup.TOOLS))
     );
 
+    public static Item DETACHER = Registry.register(
+            Registry.ITEM, new Identifier(Matchbox.MODID, "detacher"),
+            new DetacherTool(new FabricItemSettings().maxDamage(256).group(ItemGroup.TOOLS))
+    );
+
     public static void init () {
 
     }
