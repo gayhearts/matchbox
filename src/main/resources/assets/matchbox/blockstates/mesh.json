@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=bottom": {
+      "model": "matchbox:block/mesh_bottom"
+    },
+    "half=top": {
+      "model": "matchbox:block/mesh_top"
+    }
+  }
+}

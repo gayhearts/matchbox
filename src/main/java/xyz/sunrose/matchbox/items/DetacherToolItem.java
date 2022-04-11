@@ -7,7 +7,6 @@ import net.minecraft.block.HorizontalConnectingBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
@@ -18,8 +17,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import xyz.sunrose.matchbox.Matchbox;
 
-public class DetacherTool extends Item {
-    public DetacherTool(Settings settings) {
+public class DetacherToolItem extends Item {
+    public DetacherToolItem(Settings settings) {
         super(settings);
     }
 
@@ -35,11 +34,10 @@ public class DetacherTool extends Item {
                 //detach the relevant side
                 BlockState finalState = detachSide(world, blockState, blockPos, side);
                 world.setBlockState(blockPos, finalState, Block.NOTIFY_LISTENERS | Block.FORCE_STATE); //flags to not update neighbors
-                // TODO custom sound
-                BlockSoundGroup soundGroup = block.getSoundGroup(blockState);
+
                 world.playSound(
-                        player, blockPos, soundGroup.getBreakSound(),
-                        SoundCategory.BLOCKS, 0.9f, soundGroup.getPitch() * 0.8f
+                        player, blockPos, Matchbox.SAW_SOUND,
+                        SoundCategory.BLOCKS, 1f, 0.8f + 0.01f * world.random.nextFloat()
                 );
 
                 world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, blockPos);

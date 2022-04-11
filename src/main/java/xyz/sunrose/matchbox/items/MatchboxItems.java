@@ -10,13 +10,23 @@ import xyz.sunrose.matchbox.Matchbox;
 public class MatchboxItems {
     public static Item MATCHBOX = Registry.register(
             Registry.ITEM, new Identifier(Matchbox.MODID, "matchbox"),
-            new MatchboxTool(new FabricItemSettings().maxDamage(64).group(ItemGroup.TOOLS))
+            new MatchboxToolItem(new FabricItemSettings().maxDamage(64).group(ItemGroup.TOOLS))
     );
 
     public static Item DETACHER = Registry.register(
             Registry.ITEM, new Identifier(Matchbox.MODID, "detacher"),
-            new DetacherTool(new FabricItemSettings().maxCount(1).group(ItemGroup.TOOLS))
+            new DetacherToolItem(new FabricItemSettings().maxCount(1).group(ItemGroup.TOOLS))
     );
+
+    public static Item WOOD_GLUE = Registry.register(
+            Registry.ITEM, new Identifier(Matchbox.MODID, "wood_glue"),
+            new WoodGlueItem(new FabricItemSettings().maxDamage(64).group(ItemGroup.TOOLS))
+    );
+
+    /*public static Item REDSTONE_TOOL = Registry.register(
+            Registry.ITEM, new Identifier(Matchbox.MODID, "redstone_tool"),
+            new RedstoneToolItem(new FabricItemSettings().maxCount(1).group(ItemGroup.REDSTONE))
+    );*/
 
     public static void init () {
 
