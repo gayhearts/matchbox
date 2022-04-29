@@ -15,15 +15,10 @@ import net.minecraft.util.registry.Registry;
 import xyz.sunrose.matchbox.Matchbox;
 
 public class MatchboxBlocks {
-    /*public static final Block FAKE_REDSTONE = Registry.register(
-            Registry.BLOCK, new Identifier(Matchbox.MODID, "fake_redstone"),
-            new FakeRedstoneWireBlock(FabricBlockSettings.copyOf(Blocks.REDSTONE_WIRE))
-    );*/
-
     private static final Identifier MESH_ID = new Identifier(Matchbox.MODID, "mesh");
     public static final Block MESH = Registry.register(
             Registry.BLOCK, MESH_ID,
-            new MeshBlock(FabricBlockSettings.copyOf(Blocks.CHAIN).strength(4,6))
+            new MeshBlock(FabricBlockSettings.copyOf(Blocks.CHAIN).strength(4,6).nonOpaque())
     );
     public static final Item MESH_ITEM = Registry.register(
             Registry.ITEM, MESH_ID,

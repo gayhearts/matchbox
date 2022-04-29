@@ -17,7 +17,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import xyz.sunrose.matchbox.Matchbox;
 
 public class MeshBlock extends Block {
     protected static final VoxelShape TOP_SHAPE = Block.createCuboidShape(0, 14, 0, 16, 16, 16);
@@ -47,6 +46,14 @@ public class MeshBlock extends Block {
         return this.getDefaultState().with(HALF,half);
     }
 
+    @Override
+    public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
+        if (oldState.isOf(state.getBlock())) {
+            return;
+        }
+        updateEnabled(world, pos, state);
+    }
+
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         VoxelShape shape = switch (state.get(HALF)) {
             case TOP -> TOP_SHAPE;
@@ -73,9 +80,13 @@ public class MeshBlock extends Block {
     //hopper borrow
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
+        updateEnabled(world, pos, state);
+    }
+
+    public void updateEnabled(World world, BlockPos pos, BlockState state) {
         boolean redstoneEnable = !world.isReceivingRedstonePower(pos);
         if (redstoneEnable != state.get(ENABLED)) {
-            world.setBlockState(pos, state.with(ENABLED, redstoneEnable), Block.NO_REDRAW);
+            world.setBlockState(pos, state.with(ENABLED, redstoneEnable));
         }
     }
 }
