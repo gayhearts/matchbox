@@ -4,7 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
@@ -41,7 +43,8 @@ public class WoodGlueItem extends Item {
             world.emitGameEvent(playerEntity, GameEvent.BLOCK_CHANGE, blockPos);
             if (playerEntity != null) {
                 context.getStack().damage(1, playerEntity, (p) -> {
-                    p.sendToolBreakStatus(context.getHand());
+                    //when "broken", turn back into a glass bottle??
+                    p.setStackInHand(context.getHand(), new ItemStack(Items.GLASS_BOTTLE));
                 });
             }
             return ActionResult.SUCCESS;
@@ -63,4 +66,6 @@ public class WoodGlueItem extends Item {
         Matchbox.LOGGER.error("This shouldn't be possible??");
         return null;
     }
+
+
 }
