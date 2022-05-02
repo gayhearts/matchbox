@@ -1,5 +1,6 @@
 {
   "item.matchbox.matchbox": "Matchbox",
   "item.matchbox.detacher": "Hacksaw",
-  "item.matchbox.wood_glue": "Wood Glue"
+  "item.matchbox.wood_glue": "Wood Glue",
+  "block.matchbox.mesh": "Mesh"
 }

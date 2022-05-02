@@ -21,6 +21,9 @@
   "entrypoints": {
     "main": [
       "xyz.sunrose.matchbox.Matchbox"
+    ],
+    "client": [
+      "xyz.sunrose.matchbox.MatchboxClient"
     ]
   },
   "mixins": [

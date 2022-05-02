@@ -1,5 +1,7 @@
 package xyz.sunrose.matchbox.blocks;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -9,7 +11,6 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import xyz.sunrose.matchbox.Matchbox;
@@ -26,6 +27,9 @@ public class MatchboxBlocks {
     );
 
     public static void init() {
+    }
+
+    public static void clientInit() {
         BlockRenderLayerMap.INSTANCE.putBlock(MESH, RenderLayer.getCutoutMipped());
     }
 }
