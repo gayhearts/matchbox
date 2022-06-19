@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "Matchbox",
-  "description": "???",
+  "description": "Small tools for the minecraft builder",
   "authors": [
     "Mod by Sunroses",
     "Matchbox and hacksaw textures by Koritsi Alogo"
@@ -14,7 +14,7 @@
     "sources": "https://github.com/deli73/matchbox"
   },
 
-  "license": "BSD-3 probably",
+  "license": "BSD-3",
   "icon": "assets/matchbox/icon.png",
 
   "environment": "*",
