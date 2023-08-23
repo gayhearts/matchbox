@@ -1,9 +1,12 @@
 package xyz.sunrose.matchbox;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.sunrose.matchbox.blocks.MatchboxBlocks;
@@ -15,7 +18,7 @@ public class Matchbox implements ModInitializer {
 
 	public static final Identifier SAW_SOUND_ID = new Identifier(MODID, "saw");
 	public static SoundEvent SAW_SOUND = Registry.register(
-			Registry.SOUND_EVENT, SAW_SOUND_ID, new SoundEvent(SAW_SOUND_ID)
+			Registries.SOUND_EVENT, SAW_SOUND_ID, SoundEvent.of(SAW_SOUND_ID)
 	);
 
 	@Override

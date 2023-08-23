@@ -1,13 +1,12 @@
 package xyz.sunrose.matchbox.items;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ConnectingBlock;
-import net.minecraft.block.HorizontalConnectingBlock;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.WallShape;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -28,11 +27,36 @@ public class DetacherToolItem extends Item {
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
-        if(blockState.getBlock() instanceof HorizontalConnectingBlock block) { // TODO maybe check for side properties instead of this
+        if(blockState.getBlock() instanceof HorizontalConnectingBlock) { // TODO maybe check for side properties instead of this
             Direction side = hitSide(context);
             if (  blockState.get(ConnectingBlock.FACING_PROPERTIES.get(side)) ) { // only execute if the relevant side has a connection
                 //detach the relevant side
                 BlockState finalState = detachSide(world, blockState, blockPos, side);
+                world.setBlockState(blockPos, finalState, Block.NOTIFY_LISTENERS | Block.FORCE_STATE); //flags to not update neighbors
+
+                world.playSound(
+                        player, blockPos, Matchbox.SAW_SOUND,
+                        SoundCategory.BLOCKS, 1f, 0.8f + 0.01f * world.random.nextFloat()
+                );
+
+                world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, blockPos);
+                return ActionResult.success(world.isClient());
+            }
+        }
+
+        else if(blockState.getBlock() instanceof WallBlock) {
+            Direction side = hitSide(context);
+            EnumProperty<WallShape> sideToCheck = null;
+            switch (side) {
+                case DOWN, UP -> throw new IllegalArgumentException("Matchbox getting invalid side input in wall's useOnBlock");
+                case NORTH -> sideToCheck = WallBlock.NORTH_SHAPE;
+                case SOUTH -> sideToCheck = WallBlock.SOUTH_SHAPE;
+                case WEST -> sideToCheck = WallBlock.WEST_SHAPE;
+                case EAST -> sideToCheck = WallBlock.EAST_SHAPE;
+            }
+            if (  blockState.get(sideToCheck) != WallShape.NONE) { // only execute if the relevant side has a connection
+                //detach the relevant side
+                BlockState finalState = detachWallSide(world, blockState, blockPos, side, sideToCheck);
                 world.setBlockState(blockPos, finalState, Block.NOTIFY_LISTENERS | Block.FORCE_STATE); //flags to not update neighbors
 
                 world.playSound(
@@ -58,6 +82,34 @@ public class DetacherToolItem extends Item {
             world.setBlockState(pos.offset(dir), neighbor.with(ConnectingBlock.FACING_PROPERTIES.get(opposite), false), Block.NOTIFY_LISTENERS | Block.FORCE_STATE);
         }
         return newState;
+    }
+
+    private BlockState detachWallSide(World world, BlockState state, BlockPos pos, Direction dir, EnumProperty<WallShape> side) {
+        // disconnect the wall on our side...
+        BlockState newState = state.with(side, WallShape.NONE).with(WallBlock.UP, true);
+        BlockState neighbor = world.getBlockState(pos.offset(dir));
+        if (neighbor.getBlock() instanceof WallBlock) {
+            world.setBlockState(pos.offset(dir), neighbor.with(oppositeSide(dir), WallShape.NONE).with(WallBlock.UP, true), Block.NOTIFY_LISTENERS | Block.FORCE_STATE);
+        }
+        return newState;
+    }
+
+    private EnumProperty<WallShape> oppositeSide(Direction side) {
+        switch (side) {
+            case NORTH -> {
+                return WallBlock.SOUTH_SHAPE;
+            }
+            case SOUTH -> {
+                return WallBlock.NORTH_SHAPE;
+            }
+            case WEST -> {
+                return WallBlock.EAST_SHAPE;
+            }
+            case EAST -> {
+                return WallBlock.WEST_SHAPE;
+            }
+            default -> throw new IllegalArgumentException("Matchbox getting invalid input to oppositeSide");
+        }
     }
 
     private Direction hitSide(ItemUsageContext context) {
