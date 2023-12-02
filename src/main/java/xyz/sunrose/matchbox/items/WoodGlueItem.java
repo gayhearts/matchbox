@@ -36,7 +36,7 @@ public class WoodGlueItem extends Item {
 
             BlockState newState = getUnstrippedBlock(blockState, strippedBlocks);
             world.setBlockState(blockPos, newState,
-                    Block.REDRAW_ON_MAIN_THREAD | Block.NOTIFY_LISTENERS | Block.SKIP_LIGHTING_UPDATES
+                    Block.REDRAW_ON_MAIN_THREAD | Block.NOTIFY_LISTENERS
             );
 
             //standard stuff
