@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "matchbox:item/altimeter_00"
+  },
+  "overrides": [
+    { "predicate": { "alt": 0.000000 }, "model": "matchbox:item/altimeter_00" },
+    { "predicate": { "alt": 0.0859375 }, "model": "matchbox:item/altimeter_01" },
+    { "predicate": { "alt": 0.169270833 }, "model": "matchbox:item/altimeter_02" },
+    { "predicate": { "alt": 0.25 }, "model": "matchbox:item/altimeter_03" },
+    { "predicate": { "alt": 0.328125 }, "model": "matchbox:item/altimeter_04" },
+    { "predicate": { "alt": 0.3359375 }, "model": "matchbox:item/altimeter_05" },
+    { "predicate": { "alt": 0.46875 }, "model": "matchbox:item/altimeter_06" },
+    { "predicate": { "alt": 0.6015625 }, "model": "matchbox:item/altimeter_07" },
+    { "predicate": { "alt": 0.736979167 }, "model": "matchbox:item/altimeter_08" },
+    { "predicate": { "alt": 0.86979167 }, "model": "matchbox:item/altimeter_09" }
+  ]
+}

@@ -2,5 +2,9 @@
   "item.matchbox.matchbox": "Matchbox",
   "item.matchbox.detacher": "Hacksaw",
   "item.matchbox.wood_glue": "Wood Glue",
+  "item.matchbox.altimeter": "Altimeter",
+  "item.matchbox.altimeter.readout.above": "Altitude: %sm above sea level (y=%s)",
+  "item.matchbox.altimeter.readout.below": "Altitude: %sm below sea level (y=%s)",
+  "item.matchbox.altimeter.readout.sea": "Altitude: At sea level (y=%s)",
   "block.matchbox.mesh": "Mesh"
 }
