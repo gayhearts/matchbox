@@ -44,7 +44,9 @@ public class MatchboxItems {
             entries.add(WOOD_GLUE);
             entries.addAfter(Items.CLOCK, ALTIMETER);
         });
+    }
 
+    public static void clientInit() {
         ModelPredicateProviderRegistry.register(
                 ALTIMETER, new Identifier("alt"),
                 (stack, world, entity, seed) -> entity != null ? remap(-64, 320, entity.getY()) : 0.0F
