@@ -16,6 +16,10 @@ public class Matchbox implements ModInitializer {
 	public static final String MODID = "matchbox";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
+	public static Identifier id(String name) {
+		return new Identifier(MODID, name);
+	}
+
 	public static final Identifier SAW_SOUND_ID = new Identifier(MODID, "saw");
 	public static SoundEvent SAW_SOUND = Registry.register(
 			Registries.SOUND_EVENT, SAW_SOUND_ID, SoundEvent.of(SAW_SOUND_ID)

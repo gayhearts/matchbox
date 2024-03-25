@@ -12,24 +12,33 @@ import net.minecraft.util.Identifier;
 import xyz.sunrose.matchbox.Matchbox;
 
 public class MatchboxItems {
+    public static Identifier id(String name) {
+        return new Identifier(Matchbox.MODID, name);
+    }
+
     public static Item MATCHBOX = Registry.register(
-            Registries.ITEM, new Identifier(Matchbox.MODID, "matchbox"),
+            Registries.ITEM, id("matchbox"),
             new MatchboxToolItem(new FabricItemSettings().maxDamage(64))
     );
 
     public static Item DETACHER = Registry.register(
-            Registries.ITEM, new Identifier(Matchbox.MODID, "detacher"),
+            Registries.ITEM,  id("detacher"),
             new DetacherToolItem(new FabricItemSettings().maxCount(1))
     );
 
     public static Item WOOD_GLUE = Registry.register(
-            Registries.ITEM, new Identifier(Matchbox.MODID, "wood_glue"),
+            Registries.ITEM,  id("wood_glue"),
             new WoodGlueItem(new FabricItemSettings().maxDamage(64))
     );
 
     public static final Item ALTIMETER = Registry.register(
-            Registries.ITEM, new Identifier(Matchbox.MODID, "altimeter"),
+            Registries.ITEM,  id("altimeter"),
             new AltimeterItem(new FabricItemSettings().maxCount(1))
+    );
+
+    public static final Item LIGHTMETER = Registry.register(
+            Registries.ITEM, id("lightmeter"),
+            new LightMeterItem(new FabricItemSettings().maxCount(1))
     );
 
     /*public static Item REDSTONE_TOOL = Registry.register(
@@ -43,6 +52,7 @@ public class MatchboxItems {
             entries.add(DETACHER);
             entries.add(WOOD_GLUE);
             entries.addAfter(Items.CLOCK, ALTIMETER);
+            entries.add(LIGHTMETER);
         });
     }
 

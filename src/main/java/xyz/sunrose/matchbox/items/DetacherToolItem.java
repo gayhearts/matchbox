@@ -85,6 +85,8 @@ public class DetacherToolItem extends Item {
     }
 
     private BlockState detachWallSide(World world, BlockState state, BlockPos pos, Direction dir, EnumProperty<WallShape> side) {
+        //TODO fix vertical stuff
+
         // disconnect the wall on our side...
         BlockState newState = state.with(side, WallShape.NONE).with(WallBlock.UP, true);
         BlockState neighbor = world.getBlockState(pos.offset(dir));
