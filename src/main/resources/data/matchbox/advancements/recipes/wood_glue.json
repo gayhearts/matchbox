@@ -1,0 +1,23 @@
+{
+  "parent": "matchbox:recipes/root",
+  "criteria": {
+    "has_slime": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:slime_ball"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "matchbox:wood_glue"
+    ]
+  },
+  "sends_telemetry_event": false
+}

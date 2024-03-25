@@ -1,0 +1,23 @@
+{
+  "parent": "matchbox:recipes/root",
+  "criteria": {
+    "has_copper": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:chain"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "matchbox:mesh"
+    ]
+  },
+  "sends_telemetry_event": false
+}

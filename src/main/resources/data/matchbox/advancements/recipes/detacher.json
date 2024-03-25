@@ -1,0 +1,23 @@
+{
+  "parent": "matchbox:recipes/root",
+  "criteria": {
+    "has_iron": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:iron_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "matchbox:detacher"
+    ]
+  },
+  "sends_telemetry_event": false
+}
